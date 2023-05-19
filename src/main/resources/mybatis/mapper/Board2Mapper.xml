@@ -1,0 +1,39 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.green.board2.BoardMapper2">
+
+    <insert id="insBoard2" parameterType="Board2Entity">
+        INSERT INTO a_board
+        (title,ctnt,writer)
+        VALUES
+        (#{title},#{ctnt},#{writer})
+    </insert>
+    <select id="selBoardAll" resultType="Board2Entity">
+    select title,ctnt,writer,created_at createdAT, updated_at updatedAt
+    from a_board
+    </select>
+    <update id="upBoard2">
+        update a_board
+        set title = #{title},
+        ctnt = #{ctnt},
+        writer = #{writer},
+        updated_at = current_timestamp()
+        where iboard = #{iboard}
+    </update>
+
+    <delete id="delBoard2">
+        delete from a_board
+        where iboard = #{iboard}
+    </delete>
+    <select id="selBoardById" resultType="Board2Entity">
+        select iboard, title, ctnt, writer
+        ,created_at createdAt, updated_at updatedAt
+        from a_board
+        where iboard = #{iboard}
+     </select>
+
+
+
+</mapper>
